@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<androidx.cardview.widget.CardView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="16dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="8dp"
+        android:background="#D8222222">
+
+        <ImageView
+            android:id="@+id/image_poster"
+            android:layout_width="113dp"
+            android:layout_height="170dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/text_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:text="Title of The Movie is too long dude"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/image_poster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_year"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:text="@string/year"
+            app:layout_constraintStart_toEndOf="@+id/image_poster"
+            app:layout_constraintTop_toBottomOf="@+id/text_title"
+            tools:text="(2019)" />
+
+        <TextView
+            android:id="@+id/text_genres"
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="#959595"
+            app:layout_constraintStart_toEndOf="@+id/image_poster"
+            app:layout_constraintTop_toBottomOf="@+id/text_year"
+            tools:text="Drama • Comedy • Action • Horror" />
+
+        <TextView
+            android:id="@+id/text_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Rating"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_poster"/>
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="9.7"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingHorizontal="5dp"
+            android:background="@drawable/rating_textview_background"
+            app:layout_constraintBottom_toBottomOf="@id/text_rating"
+            app:layout_constraintStart_toEndOf="@+id/text_rating"
+            app:layout_constraintTop_toTopOf="@id/text_rating" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
