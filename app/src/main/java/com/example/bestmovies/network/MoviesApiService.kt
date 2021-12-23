@@ -2,6 +2,7 @@ package com.example.bestmovies.network
 
 import com.example.bestmovies.Constants
 import com.example.bestmovies.models.Movie
+import com.example.bestmovies.models.Response
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -24,16 +25,16 @@ private val retrofit = Retrofit.Builder()
 
 interface MoviesApiService {
 
-    @GET("movies/top_rated")
+    @GET("movie/top_rated")
     suspend fun getTopMovies(
         @Query("api_key") apiKey: String = Constants.API_KEY
-    ): List<Movie>
+    ): Response
 
-    @GET("movies/top_rated/{id}")
+    @GET("movie/{id}")
     suspend fun getMovie(
         @Path("id") id: Int,
         @Query("api_key") apiKey: String = Constants.API_KEY
-    ): List<Movie>
+    ): Movie
 }
 
 

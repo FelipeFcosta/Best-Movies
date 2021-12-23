@@ -11,17 +11,29 @@ import kotlinx.coroutines.launch
 
 class TopMoviesViewModel : ViewModel() {
 
-    private val _movies = MutableLiveData<List<Movie>>()
-    val movies: MutableLiveData<List<Movie>> = _movies
+    private val _movies = MutableLiveData<Movie>()
+    val movies: MutableLiveData<Movie> = _movies
+
+    private val _status = MutableLiveData<String>()
+    val status: MutableLiveData<String> = _status
+
+    init {
+        _status.value = "Init"
+        getTopMovies()
+    }
 
     fun getTopMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch() {
             try {
-                _movies.value = MoviesApi.retrofitService.getTopMovies()
-                Log.d("TopMoviesViewModel", "Success: first title = ${_movies.value!![0].title}")
+                _status.value = "Trying"
+                _movies.value = MoviesApi.retrofitService.getMovie(512195)
+                _status.value = "Success"
+                Log.d("TopMoviesViewModel", "Success: first title = ${_movies.value!!.title}")
             } catch (e: Exception) {
-                Log.d("TopMoviesViewModel", "Failed")
+                Log.d("TopMoviesViewModel", "Failed: ${e.message}")
+                _status.value = e.message
             }
         }
     }
+
 }
