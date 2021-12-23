@@ -5,6 +5,7 @@ class Constants {
     companion object {
 
         val BASE_URL = "https://api.themoviedb.org/3/"
+        val BASE_POSTER_URL = "https://image.tmdb.org/t/p/w300"
         val API_KEY = "75d46f9119fa6a3b6a3de024b0e34d88"
 
         val genresById = mapOf<Int, String>(
