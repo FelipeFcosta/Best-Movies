@@ -14,16 +14,25 @@ import com.example.bestmovies.databinding.FragmentTopMoviesBinding
  */
 class TopMoviesFragment : Fragment() {
 
+    // Binding object instance corresponding to the fragment_top_movies.xml layout
+    private var binding: FragmentTopMoviesBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentTopMoviesBinding.inflate(inflater)
+        val fragmentBinding = FragmentTopMoviesBinding.inflate(inflater, container, false)
 
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.lifecycleOwner = this
+        binding = fragmentBinding
+        return fragmentBinding.root
+    }
 
-        return binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding?.apply {
+            topMoviesFragment = this@TopMoviesFragment
+            lifecycleOwner = viewLifecycleOwner
+        }
     }
 }

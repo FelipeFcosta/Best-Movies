@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="detailedMovieFragment"
+            type="com.example.bestmovies.detailedmovie.DetailedMovieFragment" />
 
     </data>
 
@@ -29,7 +32,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/backgrounds/scenic" />
-
 
 
             <TextView
