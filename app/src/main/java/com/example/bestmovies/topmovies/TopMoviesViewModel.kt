@@ -15,24 +15,25 @@ class TopMoviesViewModel : ViewModel() {
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: MutableLiveData<List<Movie>> = _movies
 
-    private val _status = MutableLiveData<String>()
-    val status: MutableLiveData<String> = _status
+    private val _status = MutableLiveData<MoviesApi.MovieStatus>()
+    val status: MutableLiveData<MoviesApi.MovieStatus> = _status
+
+    private val _genres = MutableLiveData<List<String>>()
+    val genres: MutableLiveData<List<String>> = _genres
 
     init {
-        _status.value = "Init"
         getTopMovies()
     }
 
     fun getTopMovies() {
         viewModelScope.launch() {
+            _status.value = MoviesApi.MovieStatus.LOADING
             try {
-                _status.value = "Trying"
                 _movies.value = MoviesApi.retrofitService.getTopMovies().movies
-                _status.value = "Success"
-                Log.d("TopMoviesViewModel", "Success: first title = ${_movies.value!![0].title}")
+                _status.value = MoviesApi.MovieStatus.DONE
             } catch (e: Exception) {
                 Log.d("TopMoviesViewModel", "Failed: ${e.message}")
-                _status.value = e.message
+                _status.value = MoviesApi.MovieStatus.ERROR
             }
         }
     }

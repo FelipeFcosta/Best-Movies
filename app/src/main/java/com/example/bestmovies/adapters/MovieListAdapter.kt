@@ -12,7 +12,6 @@ import com.example.bestmovies.models.Movie
 class MovieListAdapter : ListAdapter<Movie,
         MovieListAdapter.ListMoviesViewHolder>(DiffCallBack) {
 
-
     /**
      * Allows the RecyclerView to determine which items have changed when the [List] of
      * [Movie] has been updated.
@@ -32,7 +31,7 @@ class MovieListAdapter : ListAdapter<Movie,
 
         fun bind(movie: Movie) {
             binding.movie = movie
-            binding.textTitle.text = movie.title
+            binding.rating.text = "${movie.voteAverage}"
 
             // force the data binding to execute immediately
             binding.executePendingBindings()

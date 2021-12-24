@@ -15,21 +15,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="12dp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
             android:paddingBottom="20dp"
+            android:background="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/image_poster"
-                android:layout_width="93dp"
-                android:layout_height="140dp"
-                app:cardCornerRadius="8dp"
+                android:layout_width="86dp"
+                android:layout_height="130dp"
+                app:cardCornerRadius="6dp"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/text_title"
@@ -47,17 +51,18 @@
 
             </androidx.cardview.widget.CardView>
 
-
             <TextView
                 android:id="@+id/text_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:textSize="16sp"
-                android:textStyle="bold"
+                android:text="@{movie.title}"
+                android:textColor="@color/white"
+                android:background="@null"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image_poster"
@@ -66,34 +71,34 @@
 
             <TextView
                 android:id="@+id/text_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="2019"
-                android:textSize="12sp"
+                android:text="@{movie.releaseDate.substring(0, 4)}"
+                style="@style/InfoTextView"
                 app:layout_constraintStart_toStartOf="@+id/text_title"
-                app:layout_constraintTop_toBottomOf="@+id/text_title" />
+                app:layout_constraintTop_toBottomOf="@+id/text_title"
+                tools:text="2019"/>
 
             <TextView
-                android:id="@+id/title_genres"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textColor="#959595"
-                android:textSize="12sp"
+                android:id="@+id/text_genres"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                style="@style/InfoTextView"
+                app:layout_constrainedWidth="true"
+                app:genres="@{movie.genreIds}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/text_year"
                 app:layout_constraintTop_toBottomOf="@+id/text_year"
-                tools:text="Drama • Comedy • Action • Horror" />
+                tools:text="Drama • Comedy • Horror" />
 
             <TextView
                 android:id="@+id/text_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="Rating"
-                android:textSize="12sp"
+                style="@style/InfoTextView"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/title_genres" />
+                app:layout_constraintStart_toStartOf="@+id/text_genres" />
 
             <TextView
                 android:id="@+id/rating"
@@ -102,13 +107,13 @@
                 android:layout_marginStart="8dp"
                 android:background="@drawable/rating_textview_background"
                 android:paddingHorizontal="5dp"
-                android:text="9.7"
                 android:textSize="12sp"
                 android:textStyle="bold"
 
                 app:layout_constraintBottom_toBottomOf="@id/text_rating"
                 app:layout_constraintStart_toEndOf="@+id/text_rating"
-                app:layout_constraintTop_toTopOf="@id/text_rating" />
+                app:layout_constraintTop_toTopOf="@id/text_rating"
+                tools:text="9.7"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
