@@ -6,7 +6,7 @@
     <data>
         <variable
             name="detailedMovieFragment"
-            type="com.example.bestmovies.detailedmovie.DetailedMovieFragment" />
+            type="com.example.bestmovies.DetailedMovieFragment" />
 
     </data>
 
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="20dp"
-            tools:context=".detailedmovie.DetailedMovieFragment">
+            tools:context=".DetailedMovieFragment">
 
             <ImageView
                 android:id="@+id/image_backdrop"

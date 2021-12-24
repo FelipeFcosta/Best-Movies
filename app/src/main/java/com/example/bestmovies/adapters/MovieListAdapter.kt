@@ -1,6 +1,5 @@
 package com.example.bestmovies.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bestmovies.databinding.MovieItemViewBinding
 import com.example.bestmovies.models.Movie
 
-class MovieListAdapter : ListAdapter<Movie,
-        MovieListAdapter.ListMoviesViewHolder>(DiffCallBack) {
+class MovieListAdapter(
+    private val movieClickListener: MovieClickListener
+    ) : ListAdapter<Movie,MovieListAdapter.ListMoviesViewHolder>(DiffCallBack) {
 
     /**
      * Allows the RecyclerView to determine which items have changed when the [List] of
@@ -43,10 +43,12 @@ class MovieListAdapter : ListAdapter<Movie,
         return ListMoviesViewHolder(MovieItemViewBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
+
     override fun onBindViewHolder(holder: ListMoviesViewHolder, position: Int) {
         val movie = getItem(position)
         holder.bind(movie)
+        holder.itemView.setOnClickListener {
+            movieClickListener.onClick(movie.id)
+        }
     }
-
-
 }

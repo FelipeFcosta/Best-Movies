@@ -1,16 +1,14 @@
-package com.example.bestmovies.topmovies
+package com.example.bestmovies.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bestmovies.Constants
 import com.example.bestmovies.models.Movie
 import com.example.bestmovies.network.MoviesApi
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class TopMoviesViewModel : ViewModel() {
+class MoviesViewModel : ViewModel() {
 
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: MutableLiveData<List<Movie>> = _movies
@@ -18,8 +16,7 @@ class TopMoviesViewModel : ViewModel() {
     private val _status = MutableLiveData<MoviesApi.MovieStatus>()
     val status: MutableLiveData<MoviesApi.MovieStatus> = _status
 
-    private val _genres = MutableLiveData<List<String>>()
-    val genres: MutableLiveData<List<String>> = _genres
+    private var _newMovieId: Int = 0
 
     init {
         getTopMovies()
@@ -38,4 +35,7 @@ class TopMoviesViewModel : ViewModel() {
         }
     }
 
+    fun setNewMovieId(movieId: Int) {
+        _newMovieId = movieId
+    }
 }

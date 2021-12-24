@@ -6,16 +6,16 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.bestmovies.topmovies.TopMoviesViewModel" />
+            type="com.example.bestmovies.viewmodels.MoviesViewModel" />
         <variable
             name="topMoviesFragment"
-            type="com.example.bestmovies.topmovies.TopMoviesFragment" />
+            type="com.example.bestmovies.TopMoviesFragment" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.bestmovies.topmovies.TopMoviesFragment">
+        tools:context="com.example.bestmovies.TopMoviesFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/movies_list"

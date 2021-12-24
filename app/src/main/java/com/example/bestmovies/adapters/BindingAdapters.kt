@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.bestmovies.adapters.MovieListAdapter
 import com.example.bestmovies.models.Movie
+import com.example.bestmovies.utilities.Constants
 
 @BindingAdapter("posterPath")
 fun bindPoster(imgView: ImageView, imgPath: String?) {

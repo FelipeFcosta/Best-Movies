@@ -1,4 +1,4 @@
-package com.example.bestmovies.detailedmovie
+package com.example.bestmovies
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

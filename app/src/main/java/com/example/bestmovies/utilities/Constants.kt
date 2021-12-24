@@ -1,4 +1,4 @@
-package com.example.bestmovies
+package com.example.bestmovies.utilities
 
 object Constants {
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/topMoviesFragment"
-        android:name="com.example.bestmovies.topmovies.TopMoviesFragment"
+        android:name="com.example.bestmovies.TopMoviesFragment"
         android:label="TopMoviesFragment"
         tools:layout="@layout/fragment_top_movies">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailedMovieFragment"
-        android:name="com.example.bestmovies.detailedmovie.DetailedMovieFragment"
+        android:name="com.example.bestmovies.DetailedMovieFragment"
         android:label="DetailedMovieFragment"
         tools:layout="@layout/fragment_detailed_movie" />
 </navigation>
