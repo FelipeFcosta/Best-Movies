@@ -205,48 +205,59 @@
 
             <TextView
                 android:id="@+id/text_original_title"
+                style="@style/InfoTextView"
                 android:maxLines="2"
                 android:text="@{viewModel.movie.originalTitle}"
-                style="@style/InfoTextView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="@+id/title_original_title"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/info_barrier"
                 app:layout_constraintTop_toTopOf="@+id/title_original_title"
-                app:layout_constraintBottom_toBottomOf="@+id/title_original_title"
                 tools:text="Original Title" />
 
 
             <TextView
                 android:id="@+id/text_genres"
-                app:genres="@{viewModel.movie.genreIds}"
                 style="@style/InfoTextView"
+                app:genres="@{viewModel.movie.genreIds}"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="@+id/title_genres"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/info_barrier"
                 app:layout_constraintTop_toTopOf="@+id/title_genres"
-                app:layout_constraintBottom_toBottomOf="@+id/title_genres"
                 tools:text="Drama • Comedy • Action • Horror" />
 
             <TextView
                 android:id="@+id/text_countries"
-                android:text="Countries"
                 style="@style/InfoTextView"
+                app:countries="@{viewModel.movie.countries}"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="@+id/title_countries"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/info_barrier"
                 app:layout_constraintTop_toTopOf="@+id/title_countries"
-                app:layout_constraintBottom_toBottomOf="@+id/title_countries"/>
+                tools:text="United States, Germany" />
 
             <TextView
                 android:id="@+id/text_budget"
                 style="@style/InfoTextView"
                 app:dollar_text="@{viewModel.movie.budget}"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="@+id/title_budget"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/info_barrier"
                 app:layout_constraintTop_toTopOf="@+id/title_budget"
-                app:layout_constraintBottom_toBottomOf="@+id/title_budget"
                 tools:text="$2,452,000.00" />
 
             <TextView
                 android:id="@+id/text_revenue"
                 style="@style/InfoTextView"
                 app:dollar_text="@{viewModel.movie.revenue}"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintBottom_toBottomOf="@+id/title_revenue"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/info_barrier"
                 app:layout_constraintTop_toTopOf="@+id/title_revenue"
-                app:layout_constraintBottom_toBottomOf="@+id/title_revenue"
                 tools:text="$2,452,000.00" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

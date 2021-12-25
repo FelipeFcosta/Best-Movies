@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.bestmovies.adapters.MovieListAdapter
 import com.example.bestmovies.models.Movie
+import com.example.bestmovies.models.ProductionCountry
 import com.example.bestmovies.utilities.Constants
 import java.text.NumberFormat
 import java.util.*
@@ -77,4 +78,16 @@ fun bindDollarText(textView: TextView, quantity: Int?) {
         textView.text = NumberFormat.getCurrencyInstance(Locale("en", "US"))
             .format(it)
     }
+}
+
+@BindingAdapter("countries")
+fun bindCountries(textView: TextView, countries: List<ProductionCountry>?) {
+
+    var countryNames = ""
+    countries?.let {
+        for (country in countries) {
+            countryNames += "${country.name}, "
+        }
+    }
+    textView.text = countryNames.dropLast(2)
 }
