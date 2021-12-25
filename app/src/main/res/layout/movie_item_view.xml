@@ -109,6 +109,7 @@
                 android:paddingHorizontal="5dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
+                app:rating="@{movie.voteAverage}"
 
                 app:layout_constraintBottom_toBottomOf="@id/text_rating"
                 app:layout_constraintStart_toEndOf="@+id/text_rating"

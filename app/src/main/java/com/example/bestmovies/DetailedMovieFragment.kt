@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import com.example.bestmovies.databinding.FragmentDetailedMovieBinding
+import com.example.bestmovies.viewmodels.MoviesViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -16,6 +18,8 @@ class DetailedMovieFragment : Fragment() {
 
     // Binding object instance corresponding to the fragment_top_movies.xml layout
     private var binding: FragmentDetailedMovieBinding? = null
+
+    private val viewModel: MoviesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +37,8 @@ class DetailedMovieFragment : Fragment() {
         binding?.apply {
             detailedMovieFragment = this@DetailedMovieFragment
             lifecycleOwner = viewLifecycleOwner
+            viewModel = this@DetailedMovieFragment.viewModel
+            this@DetailedMovieFragment.viewModel.getDetailedMovie()
         }
     }
 }

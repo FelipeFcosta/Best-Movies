@@ -31,7 +31,6 @@ class MovieListAdapter(
 
         fun bind(movie: Movie) {
             binding.movie = movie
-            binding.rating.text = "${movie.voteAverage}"
 
             // force the data binding to execute immediately
             binding.executePendingBindings()
