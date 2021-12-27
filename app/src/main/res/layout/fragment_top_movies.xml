@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -12,7 +13,7 @@
             type="com.example.bestmovies.TopMoviesFragment" />
     </data>
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.bestmovies.TopMoviesFragment">
@@ -21,12 +22,34 @@
             android:id="@+id/movies_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:displayStatus="@{viewModel.statusMovieList}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:listData="@{viewModel.movies}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:itemCount="5"
             tools:listitem="@layout/movie_item_view">
 
         </androidx.recyclerview.widget.RecyclerView>
-    </FrameLayout>
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:loadingStatus="@{viewModel.statusMovieList}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            layout="@layout/connection_error_layout"
+            bind:errorStatus="@{viewModel.statusMovieList}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

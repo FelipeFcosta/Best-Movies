@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -13,253 +14,287 @@
 
     </data>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            tools:context=".DetailedMovieFragment">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/image_backdrop"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/detailed_movie"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:foreground="@drawable/backdrop_gradient_foreground"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                app:displayStatus="@{viewModel.statusDetailedMovie}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:backdropPath="@{viewModel.movie.backdropPath}"
-                tools:src="@tools:sample/backgrounds/scenic" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:context=".DetailedMovieFragment">
 
+                <ImageView
+                    android:id="@+id/image_backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:foreground="@drawable/backdrop_gradient_foreground"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:backdropPath="@{viewModel.movie.backdropPath}"
+                    tools:src="@tools:sample/backgrounds/scenic" />
 
-            <TextView
-                android:id="@+id/text_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="26sp"
-                android:layout_margin="10dp"
-                android:text="@{viewModel.movie.title}"
-
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_backdrop"
-                tools:text="Title That is unreasonably long"
-                />
-
-            <TextView
-                android:id="@+id/text_year"
-                android:layout_marginTop="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                android:text="@{viewModel.movie.releaseDate.replace('-', '/')}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/text_runtime"
-                app:layout_constraintTop_toBottomOf="@+id/text_title"
-                tools:text="2015/12/20"/>
-
-
-            <TextView
-                android:id="@+id/text_runtime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/text_year"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayoutCompat"
-                app:layout_constraintStart_toEndOf="@id/text_year"
-                app:layout_constraintTop_toTopOf="@+id/text_year"
-                app:runtime="@{viewModel.movie.runtime}"
-                tools:text="1h 25m"/>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/linearLayoutCompat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@+id/text_runtime"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/text_runtime"
-                app:layout_constraintBottom_toBottomOf="@+id/text_runtime">
 
                 <TextView
-                    android:id="@+id/rating"
+                    android:id="@+id/text_error_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/rating_textview_background"
-                    android:paddingHorizontal="5dp"
-                    android:textSize="14sp"
-                    app:rating="@{viewModel.movie.voteAverage}"
-                    tools:text="9.7"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="26sp"
+                    android:layout_margin="10dp"
+                    android:text="@{viewModel.movie.title}"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_backdrop"
+                    tools:text="Title That is unreasonably long"
                     />
 
                 <TextView
-                    android:id="@+id/vote_count"
+                    android:id="@+id/text_year"
+                    android:layout_marginTop="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:text="@{@string/vote_count(viewModel.movie.voteCount)}"
-                    app:layout_constraintBottom_toBottomOf="@+id/rating"
+                    android:textSize="14sp"
+                    android:text="@{viewModel.movie.releaseDate.replace('-', '/')}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/text_runtime"
+                    app:layout_constraintTop_toBottomOf="@+id/text_error_title"
+                    tools:text="2015/12/20"/>
+
+
+                <TextView
+                    android:id="@+id/text_runtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_year"
+                    app:layout_constraintEnd_toStartOf="@+id/linearLayoutCompat"
+                    app:layout_constraintStart_toEndOf="@id/text_year"
+                    app:layout_constraintTop_toTopOf="@+id/text_year"
+                    app:runtime="@{viewModel.movie.runtime}"
+                    tools:text="1h 25m"/>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/linearLayoutCompat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@+id/text_runtime"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/rating"
-                    app:layout_constraintTop_toTopOf="@+id/rating"
-                    tools:text="(1213)" />
+                    app:layout_constraintTop_toTopOf="@+id/text_runtime"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_runtime">
+
+                    <TextView
+                        android:id="@+id/rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/rating_textview_background"
+                        android:paddingHorizontal="5dp"
+                        android:textSize="14sp"
+                        app:rating="@{viewModel.movie.voteAverage}"
+                        tools:text="9.7"
+                        />
+
+                    <TextView
+                        android:id="@+id/vote_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:text="@{@string/vote_count(viewModel.movie.voteCount)}"
+                        app:layout_constraintBottom_toBottomOf="@+id/rating"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/rating"
+                        app:layout_constraintTop_toTopOf="@+id/rating"
+                        tools:text="(1213)" />
 
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/barrier"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="bottom"
-                app:barrierMargin="8dp"
-                app:constraint_referenced_ids="text_year, text_runtime, linearLayoutCompat"
-                tools:layout_editor_absoluteY="387dp" />
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="bottom"
+                    app:barrierMargin="8dp"
+                    app:constraint_referenced_ids="text_year, text_runtime, linearLayoutCompat"
+                    tools:layout_editor_absoluteY="387dp" />
 
 
-            <TextView
-                android:id="@+id/text_overview_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Overview"
-                android:textColor="#D8D8D8"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/barrier" />
+                <TextView
+                    android:id="@+id/text_overview_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Overview"
+                    android:textColor="#D8D8D8"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/barrier" />
 
-            <TextView
-                android:id="@+id/text_overview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#D8D8D8"
-                android:textSize="14sp"
-                android:paddingHorizontal="10dp"
-                android:text="@{viewModel.movie.overview}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_overview_title"
-                tools:text="Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge" />
-
-
-            <TextView
-                android:id="@+id/title_original_title"
-                android:layout_marginTop="26dp"
-                android:text="Original Title:"
-                android:layout_marginStart="10dp"
-                style="@style/InfoNameTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_overview" />
-
-            <TextView
-                android:id="@+id/title_genres"
-                android:text="Genres:"
-                style="@style/InfoNameTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_original_title" />
-
-            <TextView
-                android:id="@+id/title_countries"
-                android:text="Country:"
-                style="@style/InfoNameTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_genres" />
-
-            <TextView
-                android:id="@+id/title_budget"
-                android:text="Budget:"
-                style="@style/InfoNameTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_countries" />
-
-            <TextView
-                android:id="@+id/title_revenue"
-                android:text="Revenue:"
-                style="@style/InfoNameTextView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_budget" />
-
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/info_barrier"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:barrierDirection="right"
-                app:barrierMargin="10dp"
-                app:constraint_referenced_ids="title_genres, title_original_title" />
-
-            <TextView
-                android:id="@+id/text_original_title"
-                style="@style/InfoTextView"
-                android:maxLines="2"
-                android:text="@{viewModel.movie.originalTitle}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintBottom_toBottomOf="@+id/title_original_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/info_barrier"
-                app:layout_constraintTop_toTopOf="@+id/title_original_title"
-                tools:text="Original Title" />
+                <TextView
+                    android:id="@+id/text_overview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#D8D8D8"
+                    android:textSize="14sp"
+                    android:paddingHorizontal="10dp"
+                    android:text="@{viewModel.movie.overview}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_overview_title"
+                    tools:text="Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge" />
 
 
-            <TextView
-                android:id="@+id/text_genres"
-                style="@style/InfoTextView"
-                app:genres="@{viewModel.movie.genreIds}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintBottom_toBottomOf="@+id/title_genres"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/info_barrier"
-                app:layout_constraintTop_toTopOf="@+id/title_genres"
-                tools:text="Drama • Comedy • Action • Horror" />
+                <TextView
+                    android:id="@+id/title_original_title"
+                    android:layout_marginTop="26dp"
+                    android:text="Original Title:"
+                    android:layout_marginStart="10dp"
+                    style="@style/InfoNameTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_overview" />
 
-            <TextView
-                android:id="@+id/text_countries"
-                style="@style/InfoTextView"
-                app:countries="@{viewModel.movie.countries}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintBottom_toBottomOf="@+id/title_countries"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/info_barrier"
-                app:layout_constraintTop_toTopOf="@+id/title_countries"
-                tools:text="United States, Germany" />
+                <TextView
+                    android:id="@+id/title_genres"
+                    android:text="Genres:"
+                    style="@style/InfoNameTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_original_title" />
 
-            <TextView
-                android:id="@+id/text_budget"
-                style="@style/InfoTextView"
-                app:dollar_text="@{viewModel.movie.budget}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintBottom_toBottomOf="@+id/title_budget"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/info_barrier"
-                app:layout_constraintTop_toTopOf="@+id/title_budget"
-                tools:text="$2,452,000.00" />
+                <TextView
+                    android:id="@+id/title_countries"
+                    android:text="Country:"
+                    style="@style/InfoNameTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_genres" />
 
-            <TextView
-                android:id="@+id/text_revenue"
-                style="@style/InfoTextView"
-                app:dollar_text="@{viewModel.movie.revenue}"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintBottom_toBottomOf="@+id/title_revenue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/info_barrier"
-                app:layout_constraintTop_toTopOf="@+id/title_revenue"
-                tools:text="$2,452,000.00" />
+                <TextView
+                    android:id="@+id/title_budget"
+                    android:text="Budget:"
+                    style="@style/InfoNameTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_countries" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <TextView
+                    android:id="@+id/title_revenue"
+                    android:text="Revenue:"
+                    style="@style/InfoNameTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_budget" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/info_barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:barrierDirection="right"
+                    app:barrierMargin="10dp"
+                    app:constraint_referenced_ids="title_genres, title_original_title" />
+
+                <TextView
+                    android:id="@+id/text_original_title"
+                    style="@style/InfoTextView"
+                    android:maxLines="2"
+                    android:text="@{viewModel.movie.originalTitle}"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_original_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/info_barrier"
+                    app:layout_constraintTop_toTopOf="@+id/title_original_title"
+                    tools:text="Original Title" />
+
+
+                <TextView
+                    android:id="@+id/text_genres"
+                    style="@style/InfoTextView"
+                    app:genres="@{viewModel.movie.genreIds}"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_genres"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/info_barrier"
+                    app:layout_constraintTop_toTopOf="@+id/title_genres"
+                    tools:text="Drama • Comedy • Action • Horror" />
+
+                <TextView
+                    android:id="@+id/text_countries"
+                    style="@style/InfoTextView"
+                    app:countries="@{viewModel.movie.countries}"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_countries"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/info_barrier"
+                    app:layout_constraintTop_toTopOf="@+id/title_countries"
+                    tools:text="United States, Germany" />
+
+                <TextView
+                    android:id="@+id/text_budget"
+                    style="@style/InfoTextView"
+                    app:dollar_text="@{viewModel.movie.budget}"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_budget"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/info_barrier"
+                    app:layout_constraintTop_toTopOf="@+id/title_budget"
+                    tools:text="$2,452,000.00" />
+
+                <TextView
+                    android:id="@+id/text_revenue"
+                    style="@style/InfoTextView"
+                    app:dollar_text="@{viewModel.movie.revenue}"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintBottom_toBottomOf="@+id/title_revenue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/info_barrier"
+                    app:layout_constraintTop_toTopOf="@+id/title_revenue"
+                    tools:text="$2,452,000.00" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadingStatus="@{viewModel.statusDetailedMovie}" />
+
+        <include
+            layout="@layout/connection_error_layout"
+            bind:errorStatus="@{viewModel.statusDetailedMovie}"/>
+
+
+    </RelativeLayout>
+
+
+
 </layout>

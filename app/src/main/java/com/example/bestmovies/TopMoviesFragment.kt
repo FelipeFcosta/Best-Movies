@@ -1,15 +1,18 @@
 package com.example.bestmovies
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.bestmovies.adapters.MovieClickListener
 import com.example.bestmovies.adapters.MovieListAdapter
 import com.example.bestmovies.databinding.FragmentTopMoviesBinding
+import com.example.bestmovies.network.MoviesApi
 import com.example.bestmovies.viewmodels.MoviesViewModel
 
 /**
@@ -28,6 +31,7 @@ class TopMoviesFragment : Fragment(), MovieClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val fragmentBinding = FragmentTopMoviesBinding.inflate(inflater, container, false)
 
         binding = fragmentBinding

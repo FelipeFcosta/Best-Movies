@@ -1,8 +1,12 @@
 package com.example.bestmovies
 
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +14,7 @@ import coil.load
 import com.example.bestmovies.adapters.MovieListAdapter
 import com.example.bestmovies.models.Movie
 import com.example.bestmovies.models.ProductionCountry
+import com.example.bestmovies.network.MoviesApi
 import com.example.bestmovies.utilities.Constants
 import java.text.NumberFormat
 import java.util.*
@@ -91,3 +96,32 @@ fun bindCountries(textView: TextView, countries: List<ProductionCountry>?) {
     }
     textView.text = countryNames.dropLast(2)
 }
+
+
+@BindingAdapter("loadingStatus")
+fun bindLoadingStatus(view: ProgressBar, status: MoviesApi.MovieStatus?) {
+    makeVisibleWhen(MoviesApi.MovieStatus.LOADING, view, status)
+}
+
+@BindingAdapter("displayStatus")
+fun bindDisplayStatus(view: View, status: MoviesApi.MovieStatus?) {
+    makeVisibleWhen(MoviesApi.MovieStatus.DONE, view, status)
+}
+
+@BindingAdapter("errorStatus")
+fun bindErrorStatus(view: View, status: MoviesApi.MovieStatus?) {
+    makeVisibleWhen(MoviesApi.MovieStatus.ERROR, view, status)
+}
+
+
+/**
+ * If the status is equal to the condition given, makes the [View] visible
+ */
+fun makeVisibleWhen(condition: MoviesApi.MovieStatus?, view: View, status: MoviesApi.MovieStatus?) {
+    view.visibility = if (status == condition) {
+        View.VISIBLE
+    } else {
+        View.GONE
+    }
+}
+

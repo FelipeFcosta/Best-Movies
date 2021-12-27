@@ -1,12 +1,15 @@
 package com.example.bestmovies
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.bestmovies.databinding.FragmentDetailedMovieBinding
+import com.example.bestmovies.network.MoviesApi
 import com.example.bestmovies.viewmodels.MoviesViewModel
 
 /**
@@ -25,6 +28,7 @@ class DetailedMovieFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val fragmentBinding = FragmentDetailedMovieBinding.inflate(inflater, container, false)
 
         binding = fragmentBinding

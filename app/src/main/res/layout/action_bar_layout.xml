@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/white"
-        android:text="@string/app_name"
+        android:text="TOP MOVIES"
         android:textSize="18sp"
         android:textStyle="bold"
         tools:text="TITLE"/>

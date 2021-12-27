@@ -1,6 +1,5 @@
 package com.example.bestmovies.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.bestmovies.models.Movie
 import com.example.bestmovies.network.MoviesApi
@@ -14,8 +13,10 @@ class MoviesViewModel : ViewModel() {
     private val _movie = MutableLiveData<Movie>()
     val movie: MutableLiveData<Movie> = _movie
 
-    private val _status = MutableLiveData<MoviesApi.MovieStatus>()
-    val status: MutableLiveData<MoviesApi.MovieStatus> = _status
+    private val _statusMovieList = MutableLiveData<MoviesApi.MovieStatus>()
+    val statusMovieList: MutableLiveData<MoviesApi.MovieStatus> = _statusMovieList
+    private val _statusDetailedMovie = MutableLiveData<MoviesApi.MovieStatus>()
+    val statusDetailedMovie: MutableLiveData<MoviesApi.MovieStatus> = _statusDetailedMovie
 
     private var _movieId: Int = 0
 
@@ -25,29 +26,27 @@ class MoviesViewModel : ViewModel() {
 
     fun getTopMovies() {
         viewModelScope.launch() {
-            _status.value = MoviesApi.MovieStatus.LOADING
+            _statusMovieList.value = MoviesApi.MovieStatus.LOADING
             try {
                 _movies.value = MoviesApi.retrofitService.getTopMovies().movies
-                _status.value = MoviesApi.MovieStatus.DONE
+                _statusMovieList.value = MoviesApi.MovieStatus.DONE
             } catch (e: Exception) {
-                Log.d("MoviesViewModel", "Failed: ${e.message}")
-                _status.value = MoviesApi.MovieStatus.ERROR
+                _statusMovieList.value = MoviesApi.MovieStatus.ERROR
             }
         }
     }
 
     fun getDetailedMovie() {
         viewModelScope.launch() {
-            _status.value = MoviesApi.MovieStatus.LOADING
+            _statusDetailedMovie.value = MoviesApi.MovieStatus.LOADING
             try {
                 _movie.value = MoviesApi.retrofitService.getMovie(_movieId)
                 // set genreIds based on the getTopMovies request
                 _movie.value?.genreIds = _movies.value?.single {it.id == _movieId}?.genreIds
-
-                _status.value = MoviesApi.MovieStatus.DONE
+                _statusDetailedMovie.value = MoviesApi.MovieStatus.DONE
             } catch (e: Exception) {
-                Log.d("MoviesViewModel", "Failed: ${e.message}")
-                _status.value = MoviesApi.MovieStatus.ERROR
+                _statusDetailedMovie.value = MoviesApi.MovieStatus.ERROR
+
             }
         }
     }
