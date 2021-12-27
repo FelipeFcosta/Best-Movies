@@ -43,6 +43,10 @@ class DetailedMovieFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = this@DetailedMovieFragment.viewModel
             this@DetailedMovieFragment.viewModel.getDetailedMovie()
+
+            includedConnectionErrorLayout.buttonTryAgain.setOnClickListener {
+                this@DetailedMovieFragment.viewModel.repeatMostRecentRequest()
+            }
         }
     }
 }

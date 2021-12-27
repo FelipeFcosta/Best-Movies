@@ -40,6 +40,7 @@ interface MoviesApiService {
 // singleton
 object MoviesApi {
     enum class MovieStatus { LOADING, ERROR, DONE }
+    enum class MovieLastRequest { TOP_MOVIES, DETAILED_MOVIE, NONE }
 
     val retrofitService: MoviesApiService by lazy {
         retrofit.create(MoviesApiService::class.java)

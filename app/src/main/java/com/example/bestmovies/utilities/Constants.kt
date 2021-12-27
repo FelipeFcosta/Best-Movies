@@ -2,7 +2,6 @@ package com.example.bestmovies.utilities
 
 object Constants {
 
-
     val BASE_URL = "https://api.themoviedb.org/3/"
     val BASE_POSTER_URL = "https://image.tmdb.org/t/p/w300"
     val BASE_BACKDROP_URL = "https://image.tmdb.org/t/p/w500"

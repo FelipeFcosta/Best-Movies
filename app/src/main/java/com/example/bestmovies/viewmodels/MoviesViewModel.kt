@@ -1,9 +1,11 @@
 package com.example.bestmovies.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.bestmovies.models.Movie
 import com.example.bestmovies.network.MoviesApi
 import kotlinx.coroutines.launch
+
 
 class MoviesViewModel : ViewModel() {
 
@@ -20,11 +22,14 @@ class MoviesViewModel : ViewModel() {
 
     private var _movieId: Int = 0
 
+    private var _lastRequest = MoviesApi.MovieLastRequest.NONE
+
     init {
         getTopMovies()
     }
 
     fun getTopMovies() {
+        _lastRequest = MoviesApi.MovieLastRequest.TOP_MOVIES
         viewModelScope.launch() {
             _statusMovieList.value = MoviesApi.MovieStatus.LOADING
             try {
@@ -37,6 +42,7 @@ class MoviesViewModel : ViewModel() {
     }
 
     fun getDetailedMovie() {
+        _lastRequest = MoviesApi.MovieLastRequest.DETAILED_MOVIE
         viewModelScope.launch() {
             _statusDetailedMovie.value = MoviesApi.MovieStatus.LOADING
             try {
@@ -46,8 +52,16 @@ class MoviesViewModel : ViewModel() {
                 _statusDetailedMovie.value = MoviesApi.MovieStatus.DONE
             } catch (e: Exception) {
                 _statusDetailedMovie.value = MoviesApi.MovieStatus.ERROR
-
             }
+        }
+    }
+
+
+    fun repeatMostRecentRequest() {
+        if (_lastRequest == MoviesApi.MovieLastRequest.DETAILED_MOVIE) {
+            getDetailedMovie()
+        } else {
+            getTopMovies()
         }
     }
 

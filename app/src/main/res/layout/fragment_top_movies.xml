@@ -47,6 +47,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
+            android:id="@+id/included_connection_error_layout"
             layout="@layout/connection_error_layout"
             bind:errorStatus="@{viewModel.statusMovieList}"/>
 

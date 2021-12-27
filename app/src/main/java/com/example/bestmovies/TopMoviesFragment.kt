@@ -46,7 +46,14 @@ class TopMoviesFragment : Fragment(), MovieClickListener {
             lifecycleOwner = viewLifecycleOwner
             viewModel = this@TopMoviesFragment.viewModel
             moviesList.adapter = MovieListAdapter(this@TopMoviesFragment)
+
+            includedConnectionErrorLayout.buttonTryAgain.setOnClickListener {
+                this@TopMoviesFragment.viewModel.repeatMostRecentRequest()
+            }
         }
+
+
+
     }
 
     override fun onClick(movieId: Int) {
