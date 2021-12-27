@@ -22,8 +22,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
             android:paddingBottom="20dp"
             android:background="@null"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +48,8 @@
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     app:posterPath="@{movie.posterPath}"
-                    tools:src="@tools:sample/backgrounds/scenic" />
+                    tools:src="@tools:sample/backgrounds/scenic"
+                    android:contentDescription="@string/film_poster_description" />
 
             </androidx.cardview.widget.CardView>
 
@@ -95,7 +97,7 @@
             <TextView
                 android:id="@+id/text_rating"
                 android:layout_marginBottom="8dp"
-                android:text="Rating"
+                android:text="@string/rating_title"
                 style="@style/InfoTextView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/text_genres" />
@@ -106,7 +108,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/rating_textview_background"
-                android:paddingHorizontal="5dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:rating="@{movie.voteAverage}"

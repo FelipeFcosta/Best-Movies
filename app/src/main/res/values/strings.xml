@@ -3,5 +3,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="vote_count">(%d)</string>
+    <string name="error_message_title">Something went wrong :(</string>
+    <string name="error_message_subtitle">Please check your connection</string>
+    <string name="try_again_button_text">Try Again</string>
+    <string name="backdrop_image_description">backdrop image</string>
+    <string name="overview_title">Overview</string>
+    <string name="original_title">Original Title:</string>
+    <string name="genres_title">Genres:</string>
+    <string name="country_title">Country:</string>
+    <string name="budget_title">Budget:</string>
+    <string name="revenue_title">Revenue:</string>
+    <string name="film_poster_description">Film poster</string>
+    <string name="rating_title">Rating</string>
+    <string name="action_bar_title">TOP MOVIES</string>
+    <string name="try_again_button_message">Try Again</string>
 
 </resources>
