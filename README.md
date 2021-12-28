@@ -14,11 +14,13 @@ Click on a movie and the app will show you more details about it.
   <img src="/.github/images/movie.png" width="250" />
 </p>
 
-* app uses Architecture Components such as the ViewModel, LiveData and Data binding.
-* Retrofit was used to make the requests
-
 In case of a connection error, try again:
 
 <p align="center">
   <img src="/.github/images/connection-error.png" width="250" />
 </p>
+
+<br>
+
+* app uses Architecture Components such as the ViewModel, LiveData and Data binding.
+* Retrofit was used to make the web-service requests
