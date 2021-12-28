@@ -1,6 +1,6 @@
 # Top-Movies
 
-The app shows a list of the top-rated movies of the moment, the data is fetched from the TMDB Api.
+The app shows a list of the top-rated movies at the moment, the data is fetched from the TMDB Api.
 
 <p align="center">
   <img src="/.github/images/movies-list.png" width="250" />
